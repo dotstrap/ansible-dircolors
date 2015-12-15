@@ -1,0 +1,27 @@
+---
+# tasks file for dotstrap-dircolors
+
+# Configure dircolors
+- block:
+    - name: setup configuration
+      file: dest="{{ dotstrap_config_home }}" state=directory
+
+    # TODO: use configuration_state variable somehow (use file module?)
+    - name: create .dir_colors
+      copy: src=dir_colors dest="{{ dest }}"
+
+    - name: configure shell initialization of dircolors
+      blockinfile:
+        dest: "{{ dotstrap_config_home }}/config.{{ item }}"
+        create: yes
+        backup: no
+        state: "{{ configuration_state }}"
+        marker: "{{ marker }}"
+        block: "eval $( dircolors -b \"{{ dest }}\" )"
+      with_items:
+        - bash
+        - zsh
+  tags:
+    - bootstrap
+    - update
+    - configure

@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  author: mkwmms
+  description: "Configure LS_COLORS via .dir_colors."
+  license: GPLv3
+  min_ansible_version: 2.0
+  platforms:
+    - name: GenericUNIX
+      versions:
+        - all
+        - any
+    - name: GenericBSD
+      versions:
+        - all
+        - any
+    - name: GenericLinux
+      versions:
+        - all
+        - any
+  galaxy_tags:
+    - dotfiles
+    - dotstrap
+    - system
+
+dependencies:
+  - mkwmms.dotstrap-coreutils
