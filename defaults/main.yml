@@ -1,11 +1,11 @@
 ---
-# defaults file for dotstrap-dircolors
 
-dotstrap_config_home: "{{ ansible_user_dir }}/.config/dotstrap"
-
-marker: "#####=== {mark} Ansible managed dircolors settings ===#####"
-
-dest: "{{ ansible_user_dir }}/.dir_colors"
+shell_profile: "{{ ((ansible_user_shell | basename) == 'bash') | ternary(bash_profile, zsh_profile) }}"
 
 configuration_state: present
 
+dircolors_become: no
+
+dircolors_path: "{{ ansible_user_dir }}/.dircolors"
+
+dircolors_marker: "#####=== {mark} Ansible managed dircolors settings ===#####"

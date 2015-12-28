@@ -1,0 +1,6 @@
+---
+
+ansible_user_shell_name: "{{ ansible_user_shell | basename }}"
+
+bash_profile: "{{ ansible_user_dir }}/.bash_profile"
+zsh_profile: "{{ ansible_user_dir }}/.zshrc"

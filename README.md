@@ -1,13 +1,13 @@
-dotstrap-dircolors
+dircolors
 =========
-[![Build Status](https://travis-ci.org/mkwmms/ansible-dotstrap-dircolors.svg)](https://travis-ci.org/mkwmms/ansible-dotstrap-dircolors)
+[![Build Status](https://travis-ci.org/mkwmms/ansible-dircolors.svg)](https://travis-ci.org/mkwmms/ansible-dircolors)
 
-Configure LS_COLORS via .dir_colors. 
+Configure LS_COLORS
 
 Requirements
 ------------
 
-OS X: [homebrew] and the latest XCode tools (to install `coreutils` for `dircolors`)
+OS X: [homebrew] and the latest XCode tools (to install `coreutils` for `dircolors`).
 
 Linux: None.
 
@@ -33,7 +33,7 @@ Example Playbook
 ```
     - hosts: servers
       roles:
-         - { role: mkwmms.dotstrap-dircolors }
+         - { role: mkwmms.dircolors }
 ```
 
 License

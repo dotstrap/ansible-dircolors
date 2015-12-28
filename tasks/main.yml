@@ -1,27 +1,37 @@
 ---
-# tasks file for dotstrap-dircolors
 
-# Configure dircolors
+#####=== configure ===#####
+
 - block:
-    - name: setup configuration
-      file: dest="{{ dotstrap_config_home }}" state=directory
+    - name: bash/zsh | setup | configure
+      stat: path="{{ dircolors_path | dirname }}"
+      register: dircolors_dir
 
-    # TODO: use configuration_state variable somehow (use file module?)
-    - name: create .dir_colors
-      copy: src=dir_colors dest="{{ dest }}"
+    - name: bash/zsh | configure | dircolors file
+      copy: src=dir_colors dest="{{ dircolors_path }}"
+      become: "{{ dircolors_dir.stat.pw_name == 'root' }}"
+      when: configuration_state != 'absent'
 
-    - name: configure shell initialization of dircolors
+    - name: bash/zsh | configure | shell initialization
       blockinfile:
-        dest: "{{ dotstrap_config_home }}/config.{{ item }}"
+        dest: "{{ shell_profile }}"
         create: yes
-        backup: no
+        backup: yes
         state: "{{ configuration_state }}"
-        marker: "{{ marker }}"
-        block: "eval $( dircolors -b \"{{ dest }}\" )"
-      with_items:
-        - bash
-        - zsh
+        marker: "{{ dircolors_marker }}"
+        block: "eval $( dircolors -b \"{{ dircolors_path }}\" )"
+  when: ansible_user_shell | match(".*\/(bash|zsh)")
   tags:
     - bootstrap
-    - update
     - configure
+    - update
+
+- name: bash/zsh | configure | dircolors file
+  file: path="{{ dircolors_path }}" state=absent
+  when: (configuration_state == 'absent') and (ansible_user_shell | match(".*\/(bash|zsh)"))
+  tags: update
+
+# TODO: figure out what these do and add them to .zshrc after eval dircolors?
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' list-colors ''
+
