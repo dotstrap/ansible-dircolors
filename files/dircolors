@@ -41,119 +41,121 @@
 # You should have received a copy of the Perl Artistic License along
 # with this program.  If not, see <http://www.perlfoundation.org/artistic_license_1_0>.
 
-# core {{{1
-BLK                   38;5;68
-CAPABILITY            38;5;17
-CHR                   38;5;113;1
-DIR                   38;5;4    # original: 38;5;30
-DOOR                  38;5;127
-EXEC                  38;5;35;1 # original: 38;5;208;1
-FIFO                  38;5;126
-FILE                  38;5;253
-LINK                  target
-MULTIHARDLINK         38;5;222;1
-# "NORMAL don't reset the bold attribute -
-# https://github.com/trapd00r/LS_COLORS/issues/11
-#NORMAL                38;5;254
-ORPHAN                48;5;196;38;5;232;1
-MISSING               48;5;196;38;5;232;1
-OTHER_WRITABLE        38;5;220;1
-SETGID                48;5;3;38;5;0
-SETUID                38;5;220;1;3;100;1
-SOCK                  38;5;197
-STICKY                38;5;86;48;5;234
-STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
+  # core {{{1
+  BLK                   38;5;68
+  CAPABILITY            38;5;17
+  CHR                   38;5;113;1
+  DIR                   38;5;4    # original: 38;5;30
+  DOOR                  38;5;127
+  EXEC                  38;5;35;1 # original: 38;5;208;1
+  FIFO                  38;5;126
+  FILE                  38;5;253
+  LINK                  target
+  MULTIHARDLINK         38;5;222;1
+  # "NORMAL don't reset the bold attribute -
+  # https://github.com/trapd00r/LS_COLORS/issues/11
+  #NORMAL                38;5;254
+  ORPHAN                48;5;196;38;5;232;1
+  MISSING               48;5;196;38;5;232;1
+  OTHER_WRITABLE        38;5;220;1
+  SETGID                48;5;3;38;5;0
+  SETUID                38;5;220;1;3;100;1
+  SOCK                  38;5;197
+  STICKY                38;5;86;48;5;234
+  STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 
-*LS_COLORS 48;5;89;38;5;197;1;3;4;7 # :-)
-# }}}
-# documents {{{1
-*README               38;5;220;1
-*LICENSE              38;5;220;1
-*COPYING              38;5;220;1
-*INSTALL              38;5;220;1
-*COPYRIGHT            38;5;220;1
-*AUTHORS              38;5;220;1
-*HISTORY              38;5;220;1
-.log                  38;5;190
-# plain-text {{{2
-.txt                  38;5;253
-# markup {{{2
-.etx                  38;5;184
-.info                 38;5;184
-.markdown             38;5;184
-.md                   38;5;184
-.mkd                  38;5;184
-.nfo                  38;5;184
-.pod                  38;5;184
-.tex                  38;5;184
-.textile              38;5;184
-# key-value, non-relational data {{{2
-.json                 38;5;179
-.msg                  38;5;179
-.pgn                  38;5;179
-.rss                  38;5;179
-.xml                  38;5;179
-.yml                  38;5;179
-# }}}
-# binary {{{2
-.cbr                  38;5;141
-.cbz                  38;5;141
-.chm                  38;5;141
-.djvu                 38;5;141
-.pdf                  38;5;141
-.PDF                  38;5;141
-# words {{{3
-.docm                 38;5;111;4
-.doc                  38;5;111
-.docx                 38;5;111
-.eps                  38;5;111
-.odb                  38;5;111
-.odt                  38;5;111
-# presentation {{{3
-.odp                  38;5;166
-.pps                  38;5;166
-.ppt                  38;5;166
-# spreadsheet {{{3
-.csv                  38;5;78
-#   Open document spreadsheet
-.ods                  38;5;112
-.xla                  38;5;76
-#   Excel spreadsheet
-.xls                  38;5;112
-.xlsx                 38;5;112
-#   Excel spreadsheet with macros
-.xlsxm                38;5;112;4
-#   Excel module
-.xltm                 38;5;73;4
-.xltx                 38;5;73
-# }}}
-# }}}
-# configs {{{2
-*cfg                  1
-*conf                 1
-*rc                   1
-.ini                  1
-.config               1
-.dir_colors           1
-.dircolorsa           1
-#   vim
-.viminfo              1
-.nviminfo             1
-#   cisco VPN client configuration
-.pcf                  1
-#   adobe photoshop proof settings file
-.psf                  1
-#   slate
-.slate                1
-#   shell
-.bashrc               1
-.bash_profile         1
-.bash_login           1
-.bash_logout          1
-.zshrc                1
-.hushlogin            38;5;243
-# }}}
-# }}}
+  *LS_COLORS 48;5;89;38;5;197;1;3;4;7 # :-)
+  # }}}
+      # documents {{{1
+      *README               38;5;220;1
+      *LICENSE              38;5;220;1
+      *COPYING              38;5;220;1
+      *INSTALL              38;5;220;1
+      *COPYRIGHT            38;5;220;1
+      *AUTHORS              38;5;220;1
+      *HISTORY              38;5;220;1
+      .log                  38;5;190
+      # plain-text {{{2
+      .txt                  38;5;253
+      # markup {{{2
+      .etx                  38;5;184
+      .info                 38;5;184
+      .markdown             38;5;184
+      .md                   38;5;184
+      .mkd                  38;5;184
+      .nfo                  38;5;184
+      .pod                  38;5;184
+      .tex                  38;5;184
+      .textile              38;5;184
+      # key-value, non-relational data {{{2
+      .json                 38;5;179
+      .msg                  38;5;179
+      .pgn                  38;5;179
+      .rss                  38;5;179
+      .xml                  38;5;179
+      .yml                  38;5;179
+      # }}}
+      # binary {{{2
+      .cbr                  38;5;141
+      .cbz                  38;5;141
+      .chm                  38;5;141
+      .djvu                 38;5;141
+      .pdf                  38;5;141
+      .PDF                  38;5;141
+      # words {{{3
+      .docm                 38;5;111;4
+      .doc                  38;5;111
+      .docx                 38;5;111
+      .eps                  38;5;111
+      .odb                  38;5;111
+      .odt                  38;5;111
+      # presentation {{{3
+      .odp                  38;5;166
+      .pps                  38;5;166
+      .ppt                  38;5;166
+      # spreadsheet {{{3
+      .csv                  38;5;78
+      #   Open document spreadsheet
+      .ods                  38;5;112
+      .xla                  38;5;76
+      #   Excel spreadsheet
+      .xls                  38;5;112
+      .xlsx                 38;5;112
+      #   Excel spreadsheet with macros
+      .xlsxm                38;5;112;4
+      #   Excel module
+      .xltm                 38;5;73;4
+      .xltx                 38;5;73
+      # }}}
+      # }}}
+      # configs {{{2
+      *cfg                  1
+      *conf                 1
+      *rc                   1
+      .ini                  1
+      .config               1
+      # dircolors
+      .dir_colors           1
+      .dircolors            1
+      *DIR_COLORS           1
+      #   vim
+      .viminfo              1
+      .nviminfo             1
+      #   cisco VPN client configuration
+      .pcf                  1
+      #   adobe photoshop proof settings file
+      .psf                  1
+      #   slate
+      .slate                1
+      #   shell
+      .bashrc               1
+      .bash_profile         1
+      .bash_login           1
+      .bash_logout          1
+      .zshrc                1
+      .hushlogin            38;5;243
+      # }}}
+      # }}}
 # code {{{1
 # version control {{{2
 .git                  38;5;243 # original: 38;5;197
@@ -208,11 +210,6 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 #
 #   assembly language
 .asm                  38;5;81
-#   LISP
-.cl                   38;5;81
-.lisp                 38;5;81
-#   lua
-.lua                  38;5;81
 #   C
 .c                    38;5;81
 .C                    38;5;81
@@ -228,14 +225,14 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 .cpp                  38;5;110
 .cxx                  38;5;110
 .cc                   38;5;110
+#   C#
+.cs                   38;5;81
+.cp                   38;5;81
 #   method file for Objective C
 .M                    38;5;110
 .m                    38;5;110
 #   Swift
 .swift                38;5;110
-#   Csharp
-.cs                   38;5;81
-.cp                   38;5;81
 #   fortran
 .f                    38;5;81
 .for                  38;5;81
@@ -243,6 +240,11 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 #   pascal
 .s                    38;5;110
 .S                    38;5;110
+#   LISP
+.cl                   38;5;81
+.lisp                 38;5;81
+#   lua
+.lua                  38;5;81
 #   ?
 .sx                   38;5;81
 #   interface file in GHC - https://github.com/trapd00r/LS_COLORS/pull/9
@@ -552,6 +554,7 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 .typelib              38;5;60
 # }}}
 # tempfiles {{{1
+.o                    38;5;241 #   *nix Object file (shared libraries, core dumps etc)
 # undo files
 .pacnew               38;5;33
 .un~                  38;5;241
@@ -560,7 +563,16 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 # backups
 .BUP                  38;5;241
 .bak                  38;5;241
-.o                    38;5;241 #   *nix Object file (shared libraries, core dumps etc)
+.bak0                 38;5;241
+.bak1                 38;5;241
+.bak2                 38;5;241
+.bak3                 38;5;241
+.bak4                 38;5;241
+.bak5                 38;5;241
+.bak6                 38;5;241
+.bak7                 38;5;241
+.bak8                 38;5;241
+.bak9                 38;5;241
 # temporary files
 .swp                  38;5;244
 .swo                  38;5;244
