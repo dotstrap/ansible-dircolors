@@ -2,12 +2,12 @@ dircolors
 =========
 [![Build Status](https://travis-ci.org/mkwmms/ansible-dircolors.svg)](https://travis-ci.org/mkwmms/ansible-dircolors)
 
-Configure LS_COLORS
+Configure LS_COLORS for [bash], [zsh] & [fish] shells.
 
 Requirements
 ------------
 
-OS X: [homebrew] and the latest XCode tools (to install `coreutils` for `dircolors`).
+OS X: [homebrew] and the latest XCode tools (to install `dircolors`).
 
 Linux: None.
 
@@ -22,7 +22,7 @@ Dependencies
 OS X:
 
 ```
-mkwmms.dotstrap-coreutils
+mkwmms.coreutils
 ```
 
 Linux: None.
@@ -36,6 +36,12 @@ Example Playbook
          - { role: mkwmms.dircolors }
 ```
 
+Notes
+-----
+
+__Warning__: This role modifies your default shell configuration file, eg.
+`~/.bash_profile`, `~/.zshrc` or `~/.config/fish/config.fish`.
+
 License
 -------
 
@@ -47,10 +53,17 @@ Author Information
 [@mkwmms]
 
 [@mkwmms]: https://github.com/mkwmms
-[dotstrap]: https://github.com/mkwmms/dotstrap
-[homebrew]: https://github.com/Homebrew/homebrew
-[files]: files/
+[aura]: https://github.com/aurapm/aura
+[bash]: https://www.gnu.org/software/bash/manual/bashref.html
 [default variables]: defaults/main.yml
-[variables]: vars/main.yml
-[zsh]: http://zsh.sourceforge.net
+[dotstrap]: https://github.com/mkwmms/dotstrap
+[fasd]: https://github.com/clvv/fasd
+[files]: files/
 [fish]: http://fishshell.com/
+[homebrew]: https://github.com/Homebrew/homebrew
+[pure]: https://github.com/sindresorhus/pure
+[variables]: vars/main.yml
+[variables]: vars/main.yml
+[yaourt]: https://github.com/archlinuxfr/yaourt
+[z]: https://github.com/rupa/z
+[zsh]: http://zsh.sourceforge.net

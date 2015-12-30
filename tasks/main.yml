@@ -1,37 +1,39 @@
 ---
 
-#####=== configure ===#####
+- name: setup
+  include_vars: "{{ ansible_user_shell | basename }}.yml"
+
+#####=== install ===#####
 
 - block:
-    - name: bash/zsh | setup | configure
-      stat: path="{{ dircolors_path | dirname }}"
-      register: dircolors_dir
+    - name: setup | create configuration directory
+      file: path="{{ dircolors_dest_file | dirname }}" state=directory follow=yes
 
-    - name: bash/zsh | configure | dircolors file
-      copy: src=dir_colors dest="{{ dircolors_path }}"
-      become: "{{ dircolors_dir.stat.pw_name == 'root' }}"
-      when: configuration_state != 'absent'
+    - name: install | create dircolors file
+      copy: src=dircolors dest="{{ dircolors_dest_file }}"
+      become: "{{ dircolors_become }}"
+      when: dircolors_configure_state != 'absent'
 
-    - name: bash/zsh | configure | shell initialization
-      blockinfile:
-        dest: "{{ shell_profile }}"
-        create: yes
-        backup: yes
-        state: "{{ configuration_state }}"
-        marker: "{{ dircolors_marker }}"
-        block: "eval $( dircolors -b \"{{ dircolors_path }}\" )"
+    - name: install | remove dircolors file
+      file: path="{{ dircolors_dest_file }}" state=absent
+      become: "{{ dircolors_become }}"
+      when: (dircolors_configure_state == 'absent')
+  tags:
+    - bootstrap
+    - configure
+    - install
+
+#####=== configure ===#####
+
+- name: bash/zsh | configure | shell initialization
+  blockinfile:
+    dest: "{{ dircolors_config_file }}"
+    create: yes
+    backup: yes
+    state: "{{ dircolors_configure_state }}"
+    marker: "{{ dircolors_marker }}"
+    block: "{{ dircolors_configure_block }}"
   when: ansible_user_shell | match(".*\/(bash|zsh)")
   tags:
     - bootstrap
     - configure
-    - update
-
-- name: bash/zsh | configure | dircolors file
-  file: path="{{ dircolors_path }}" state=absent
-  when: (configuration_state == 'absent') and (ansible_user_shell | match(".*\/(bash|zsh)"))
-  tags: update
-
-# TODO: figure out what these do and add them to .zshrc after eval dircolors?
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-# zstyle ':completion:*' list-colors ''
-

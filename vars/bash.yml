@@ -1,0 +1,8 @@
+---
+
+dircolors_config_file: "{{ shell_config_file | default(bash_config_file) }}"
+
+dircolors_configure_block: |
+  eval "$( dircolors -b "{{ dircolors_dest_file }}" )"
+
+  alias ls='ls --color=auto'

@@ -1,11 +1,40 @@
 ---
 
-shell_profile: "{{ ((ansible_user_shell | basename) == 'bash') | ternary(bash_profile, zsh_profile) }}"
+#####=== global defaults ===#####
 
-configuration_state: present
+# These defaults are in many of mkwmms' roles; override them to prevent neeeding
+# to override the corresponding role default for each role individually.
 
+# Shell startup file where settings are written to.
+# This role uses the value of this variable if it is defined.
+# default:
+#   - bash: ~/.bash_profile
+#   - zsh: ~/.zshrc
+#   - fish: ~/.config/fish/config.fish
+# shell_config_file
+
+# Directory where app settings are stored.
+# This role uses the value of this variable if it is defined (see dircolors_dest_file).
+# default:
+#   - bash: ($XDG_CONFIG_HOME | ~/.config)
+#   - zsh: ($XDG_CONFIG_HOME | ~/.config)
+#   - fish: ($XDG_CONFIG_HOME | ~/.config)
+# config_dir
+
+configure_state: present
+
+#####=== dircolors defaults ===#####
+
+# The state in which settings are written to shell_config_file.
+# choices: [ present, absent ]
+dircolors_configure_state: "{{ configure_state }}"
+
+# The destination path for the dircolors file used to generate $LS_COLORS
+dircolors_dest_file: "{{ config_dir | default(xdg_config_home) }}/dircolors"
+
+# The marker line (which surrounds the text block) template.
+# "{mark}" will be replaced with "BEGIN" or "END".
+dircolors_marker: "#####=== {mark} Ansible managed dircolors ===#####"
+
+# Whether or not to escalate privledges
 dircolors_become: no
-
-dircolors_path: "{{ ansible_user_dir }}/.dircolors"
-
-dircolors_marker: "#####=== {mark} Ansible managed dircolors settings ===#####"

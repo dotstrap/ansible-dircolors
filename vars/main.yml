@@ -1,6 +1,18 @@
 ---
 
-ansible_user_shell_name: "{{ ansible_user_shell | basename }}"
+#####=== XDG variables ===#####
 
-bash_profile: "{{ ansible_user_dir }}/.bash_profile"
-zsh_profile: "{{ ansible_user_dir }}/.zshrc"
+default_xdg_config_home: "{{ ansible_user_dir }}/.config"
+xdg_config_home: "{{ ansible_env.XDG_CONFIG_HOME | default(default_xdg_config_home) }}"
+
+# default_xdg_data_home: "{{ ansible_user_dir }}/.local/share"
+# xdg_data_home: "{{ ansible_env.XDG_DATA_HOME | default(default_xdg_data_home) }}"
+
+# default_xdg_cache_home: "{{ ansible_user_dir }}/.cache"
+# xdg_cache_home: "{{ ansible_env.XDG_CACHE_HOME | default(default_xdg_cache_home) }}"
+
+#####=== shell variables ===#####
+
+bash_config_file: "{{ ansible_user_dir }}/.bash_profile"
+fish_config_file: "{{ ansible_user_dir }}/.config/fish/config.fish"
+zsh_config_file: "{{ ansible_user_dir }}/.zshrc"
