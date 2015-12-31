@@ -1,5 +1,5 @@
-dircolors
-=========
+ansible-dircolors
+=================
 [![Build Status](https://travis-ci.org/mkwmms/ansible-dircolors.svg)](https://travis-ci.org/mkwmms/ansible-dircolors)
 
 Configure LS_COLORS for [bash], [zsh] & [fish] shells.
