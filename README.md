@@ -4,10 +4,17 @@ ansible-dircolors
 
 Configure LS_COLORS for [bash], [zsh] & [fish] shells.
 
+Installation
+------------
+
+```
+ansible-galaxy install mkwmms.dircolors
+```
+
 Requirements
 ------------
 
-OS X: [homebrew] and the latest XCode tools (to install `dircolors`).
+OS X: [homebrew] and the latest Xcode tools (to install `dircolors`).
 
 Linux: None.
 
@@ -22,7 +29,7 @@ Dependencies
 OS X:
 
 ```
-mkwmms.coreutils
+- role: [ mkwmms.coreutils ]
 ```
 
 Linux: None.
@@ -31,9 +38,9 @@ Example Playbook
 ----------------
 
 ```
-    - hosts: servers
+    - hosts: all
       roles:
-         - { role: mkwmms.dircolors }
+         - role: mkwmms.dircolors
 ```
 
 Notes
