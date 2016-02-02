@@ -1,6 +1,6 @@
 ansible-dircolors
 =================
-[![Build Status](https://travis-ci.org/mkwmms/ansible-dircolors.svg)](https://travis-ci.org/mkwmms/ansible-dircolors)
+[![Build Status](https://travis-ci.org/mwilliammyers/ansible-dircolors.svg)](https://travis-ci.org/mwilliammyers/ansible-dircolors)
 
 Configure LS_COLORS for [bash], [zsh] & [fish] shells.
 
@@ -8,7 +8,7 @@ Installation
 ------------
 
 ```
-ansible-galaxy install mkwmms.dircolors
+ansible-galaxy install mwilliammyers.dircolors
 ```
 
 Requirements
@@ -29,7 +29,7 @@ Dependencies
 OS X:
 
 ```
-- role: [ mkwmms.coreutils ]
+- role: [ mwilliammyers.coreutils ]
 ```
 
 Linux: None.
@@ -40,7 +40,7 @@ Example Playbook
 ```
     - hosts: all
       roles:
-         - role: mkwmms.dircolors
+         - role: mwilliammyers.dircolors
 ```
 
 Notes
@@ -57,13 +57,13 @@ GPLv3
 Author Information
 ------------------
 
-[@mkwmms]
+[@mwilliammyers]
 
-[@mkwmms]: https://github.com/mkwmms
+[@mwilliammyers]: https://github.com/mwilliammyers
 [aura]: https://github.com/aurapm/aura
 [bash]: https://www.gnu.org/software/bash/manual/bashref.html
 [default variables]: defaults/main.yml
-[dotstrap]: https://github.com/mkwmms/dotstrap
+[dotstrap]: https://github.com/mwilliammyers/dotstrap
 [fasd]: https://github.com/clvv/fasd
 [files]: files/
 [fish]: http://fishshell.com/

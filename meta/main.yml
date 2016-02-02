@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: mkwmms
+  author: mwilliammyers
   description: Configure LS_COLORS for bash, zsh & fish shells
   license: GPLv3
   min_ansible_version: 2.0
@@ -23,5 +23,5 @@ galaxy_info:
     - lscolors
 
 dependencies:
-  - role: mkwmms.coreutils
+  - role: mwilliammyers.coreutils
     when: ansible_distribution == 'MacOSX'
