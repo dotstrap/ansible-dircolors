@@ -23,5 +23,5 @@ galaxy_info:
     - lscolors
 
 dependencies:
-  - role: mwilliammyers.coreutils
+  - role: dotstrap.coreutils
     when: ansible_distribution == 'MacOSX'

@@ -1,6 +1,6 @@
 ansible-dircolors
 =================
-[![Build Status](https://travis-ci.org/mwilliammyers/ansible-dircolors.svg)](https://travis-ci.org/mwilliammyers/ansible-dircolors)
+[![Build Status](https://travis-ci.org/dotstrap/ansible-dircolors.svg)](https://travis-ci.org/dotstrap/ansible-dircolors)
 
 Configure LS_COLORS for [bash], [zsh] & [fish] shells.
 
@@ -8,7 +8,7 @@ Installation
 ------------
 
 ```
-ansible-galaxy install mwilliammyers.dircolors
+ansible-galaxy install dotstrap.dircolors
 ```
 
 Requirements
@@ -29,7 +29,7 @@ Dependencies
 OS X:
 
 ```
-- role: [ mwilliammyers.coreutils ]
+- role: [ dotstrap.coreutils ]
 ```
 
 Linux: None.
@@ -40,7 +40,7 @@ Example Playbook
 ```
     - hosts: all
       roles:
-         - role: mwilliammyers.dircolors
+         - role: dotstrap.dircolors
 ```
 
 Notes
