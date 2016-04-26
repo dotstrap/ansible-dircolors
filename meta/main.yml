@@ -2,7 +2,7 @@
 galaxy_info:
   author: mwilliammyers
   description: Configure LS_COLORS for bash, zsh & fish shells
-  license: GPLv3
+  license: MIT
   min_ansible_version: 2.0
   platforms:
     - name: GenericUNIX
