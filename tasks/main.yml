@@ -33,6 +33,7 @@
     backup: yes
     state: "{{ dircolors_configure_state }}"
     marker: "{{ dircolors_marker }}"
+    insertbefore: BOF
     block: "{{ dircolors_configure_block }}"
   when: ansible_user_shell | match(".*\/(bash|zsh)")
   tags:

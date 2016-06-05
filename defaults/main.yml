@@ -38,3 +38,6 @@ dircolors_marker: "#####=== {mark} Ansible managed dircolors ===#####"
 
 # Whether or not to escalate privledges
 dircolors_become: no
+
+# The name of the ls executable 
+dircolors_ls_command: "{{ (ansible_os_family == 'Darwin') | ternary('gls', 'ls') }}"
