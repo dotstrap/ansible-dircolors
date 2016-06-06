@@ -1,43 +1,41 @@
 ---
-
-#####=== global defaults ===#####
-
-# These defaults are in many of mwilliammyers' roles; override them to prevent neeeding
-# to override the corresponding role default for each role individually.
-
-# Shell startup file where settings are written to.
-# This role uses the value of this variable if it is defined.
-# default:
-#   - bash: ~/.bash_profile
-#   - zsh: ~/.zshrc
-#   - fish: ~/.config/fish/config.fish
-# shell_config_file
-
-# Directory where app settings are stored.
-# This role uses the value of this variable if it is defined (see dircolors_dest_file).
-# default:
-#   - bash: ($XDG_CONFIG_HOME | ~/.config)
-#   - zsh: ($XDG_CONFIG_HOME | ~/.config)
-#   - fish: ($XDG_CONFIG_HOME | ~/.config)
-# config_dir
-
-configure_state: present
-
-#####=== dircolors defaults ===#####
-
-# The state in which settings are written to shell_config_file.
-# choices: [ present, absent ]
-dircolors_configure_state: "{{ configure_state }}"
+#####=== install ===#####
 
 # The destination path for the dircolors file used to generate $LS_COLORS
 dircolors_dest_file: "{{ config_dir | default(xdg_config_home) }}/dircolors"
 
-# The marker line (which surrounds the text block) template.
-# "{mark}" will be replaced with "BEGIN" or "END".
-dircolors_marker: "#####=== {mark} Ansible managed dircolors ===#####"
-
 # Whether or not to escalate privledges
 dircolors_become: no
 
+#####=== configure ===#####
+
+# The state in which settings are written
+# choices: [ present, absent ]
+config_state: present
+
+# Override this instead of config_state if you use that elsewhere
+# choices: [ present, absent ]
+dircolors_config_state: "{{ config_state }}"
+
+# Shell startup file where settings are written to.
+# default:
+#   - bash: ~/.bash_profile
+#   - zsh: ~/.zshrc
+#   - fish: ~/.config/fish/config.fish
+shell_config_file: "{{ default_shell_config_file }}"
+
+# Override this instead of shell_config_file if you use that elsewhere 
+# (or override shell_config_file if you want that to propogate here as well)
+dircolors_shell_config_file: "{{ shell_config_file }}"
+
+# The marker line (which surrounds the text block) template.
+# "{mark}" will be replaced with "BEGIN" or "END".
+dircolors_config_marker: "#####=== {mark} Ansible managed dircolors ===#####"
+
+# The name of the dircolors executable 
+dircolors_command_name: "{{ (ansible_os_family == 'Darwin') | ternary('gdircolors', 'dircolors') }}"
+
 # The name of the ls executable 
-dircolors_ls_command: "{{ (ansible_os_family == 'Darwin') | ternary('gls', 'ls') }}"
+dircolors_ls_command_name: "{{ (ansible_os_family == 'Darwin') | ternary('gls', 'ls') }}"
+
+dircolors_config_block: "{{ dircolors_default_config_block }}"

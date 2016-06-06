@@ -13,29 +13,32 @@
     - name: install | create dircolors file
       copy: src=dircolors dest="{{ dircolors_dest_file }}"
       become: "{{ dircolors_become }}"
-      when: dircolors_configure_state != 'absent'
+      when: dircolors_config_state != 'absent'
 
     - name: install | remove dircolors file
       file: path="{{ dircolors_dest_file }}" state=absent
       become: "{{ dircolors_become }}"
-      when: (dircolors_configure_state == 'absent')
+      when: (dircolors_config_state == 'absent')
   tags:
     - bootstrap
-    - configure
+    - bootstrap_dircolors
     - install
+    - install_dircolors
 
 #####=== configure ===#####
 
 - name: bash/zsh | configure | shell initialization
   blockinfile:
-    dest: "{{ dircolors_config_file }}"
+    dest: "{{ dircolors_shell_config_file }}"
     create: yes
     backup: yes
-    state: "{{ dircolors_configure_state }}"
-    marker: "{{ dircolors_marker }}"
+    state: "{{ dircolors_config_state }}"
+    marker: "{{ dircolors_config_marker }}"
     insertbefore: BOF
-    block: "{{ dircolors_configure_block }}"
+    block: "{{ dircolors_config_block }}"
   when: ansible_user_shell | match(".*\/(bash|zsh)")
   tags:
     - bootstrap
+    - bootstrap_dircolors
     - configure
+    - configure_dircolors

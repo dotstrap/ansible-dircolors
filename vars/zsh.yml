@@ -1,11 +1,11 @@
 ---
 
-dircolors_config_file: "{{ shell_config_file | default(zsh_config_file) }}"
+default_shell_config_file: "{{ ansible_user_dir }}/.zshrc"
 
-dircolors_configure_block: |
+dircolors_default_config_block: |
   autoload -Uz compinit && compinit
 
-  eval "$( dircolors -b "{{ dircolors_dest_file }}" )"
+  eval "$( {{ dircolors_command_name }} -b "{{ dircolors_dest_file }}" )"
   zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-  alias ls="{{ dircolors_ls_command }} --color=auto"
+  alias ls="{{ dircolors_ls_command_name }} --color=auto"
