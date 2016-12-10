@@ -1,8 +1,9 @@
 ---
 
-default_shell_config_file: "{{ ansible_user_dir }}/.zshrc"
+default_shell_config_dir: "{{ ansible_user_dir }}"
+default_shell_config_file: "{{ zsh_config_file }}"
 
-dircolors_default_config_block: |
+dircolors_default_configure_block: |
   autoload -Uz compinit && compinit
 
   eval "$( {{ dircolors_command_name }} -b "{{ dircolors_dest_file }}" )"

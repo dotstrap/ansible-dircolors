@@ -1,0 +1,15 @@
+#
+# Make ls use colors
+#
+
+function ls --description "List contents of directory"
+	set -l param --color=auto
+	if isatty 1
+		set param $param --indicator-style=classify
+	end
+	command {{ dircolors_ls_command_name }} $param $argv
+end
+
+if not set -q LS_COLORS
+	set -gx LS_COLORS ({{ dircolors_command_name }} -c {{ dircolors_dest_file }} | string replace -r 'setenv LS_COLORS \'(.*)\'' '$1')
+end

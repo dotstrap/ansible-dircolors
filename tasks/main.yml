@@ -13,12 +13,12 @@
     - name: install | create dircolors file
       copy: src=dircolors dest="{{ dircolors_dest_file }}"
       become: "{{ dircolors_become }}"
-      when: dircolors_config_state != 'absent'
+      when: dircolors_configure_state != 'absent'
 
     - name: install | remove dircolors file
       file: path="{{ dircolors_dest_file }}" state=absent
       become: "{{ dircolors_become }}"
-      when: (dircolors_config_state == 'absent')
+      when: dircolors_configure_state == 'absent'
   tags:
     - bootstrap
     - bootstrap_dircolors
@@ -32,13 +32,41 @@
     dest: "{{ dircolors_shell_config_file }}"
     create: yes
     backup: yes
-    state: "{{ dircolors_config_state }}"
-    marker: "{{ dircolors_config_marker }}"
+    state: "{{ dircolors_configure_state }}"
+    marker: "{{ dircolors_configure_marker }}"
     insertbefore: BOF
-    block: "{{ dircolors_config_block }}"
+    block: "{{ dircolors_configure_block }}"
   when: ansible_user_shell | match(".*\/(bash|zsh)")
   tags:
+    - bash
+    - zsh
     - bootstrap
     - bootstrap_dircolors
     - configure
-    - configure_dircolors
+    - config_dircolors
+
+- block:
+  - name: fish | configure | create ls command
+    template:
+      src: ls.fish.j2
+      dest: "{{ shell_config_dir }}/functions/ls.fish"
+    when: dircolors_configure_state != 'absent'
+    tags:
+      - fish
+      - bootstrap
+      - bootstrap_dircolors
+      - configure
+      - config_dircolors
+
+  - name: fish | configure | remove ls command
+    file:
+      path: "{{ shell_config_dir }}/functions/ls.fish"
+      state: absent
+    when: dircolors_configure_state == 'absent'
+    tags:
+      - fish
+      - bootstrap
+      - bootstrap_dircolors
+      - configure
+      - config_dircolors
+  when: ansible_user_shell_name == 'fish'

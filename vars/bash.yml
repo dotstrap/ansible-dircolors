@@ -1,8 +1,9 @@
 ---
 
+default_shell_config_dir: "{{ ansible_user_dir }}"
 default_shell_config_file: "{{ ansible_user_dir }}/.bash_profile"
 
-dircolors_default_config_block: |
+dircolors_default_configure_block: |
   eval "$( {{ dircolors_command_name }} -b "{{ dircolors_dest_file }}" )"
 
   alias ls="{{ dircolors_ls_command_name }} --color=auto"
