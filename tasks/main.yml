@@ -4,77 +4,19 @@
   include_vars: "{{ ansible_user_shell | basename }}.yml"
   tags: always
 
-#####=== install ===#####
-
-- block:
-    - name: setup | create configuration directory
-      file: 
-        path: "{{ dircolors_dest_file | dirname }}" 
-        state: directory 
-        follow: yes
-
-    - name: install | create dircolors file
-      get_url:
-        url: "{{ dircolors_src_url }}"
-        dest: "{{ dircolors_dest_file }}"
-        force: yes
-      become: "{{ dircolors_become }}"
-      when: dircolors_configure_state != 'absent'
-
-    - name: install | remove dircolors file
-      file: 
-        path: "{{ dircolors_dest_file }}" 
-        state: absent
-      become: "{{ dircolors_become }}"
-      when: dircolors_configure_state == 'absent'
+- include: "install_{{ dircolors_configure_state }}.yml"
   tags:
     - bootstrap
     - bootstrap_dircolors
     - install
     - install_dircolors
 
-#####=== configure ===#####
-
-- name: bash/zsh | configure | shell initialization
-  blockinfile:
-    dest: "{{ dircolors_shell_config_file }}"
-    create: yes
-    backup: yes
-    state: "{{ dircolors_configure_state }}"
-    marker: "{{ dircolors_configure_marker }}"
-    insertbefore: BOF
-    block: "{{ dircolors_configure_block }}"
-  when: ansible_user_shell | match(".*\/(bash|zsh)")
+- include: "{{ item }}"
+  with_first_found:
+    - "configure_{{ ansible_user_shell | basename }}_{{ dircolors_configure_state }}.yml"
+    - "configure_default.yml"
   tags:
-    - bash
-    - zsh
     - bootstrap
     - bootstrap_dircolors
     - configure
-    - config_dircolors
-
-- block:
-  - name: fish | configure | create ls command
-    template:
-      src: ls.fish.j2
-      dest: "{{ shell_config_dir }}/functions/ls.fish"
-    when: dircolors_configure_state != 'absent'
-    tags:
-      - fish
-      - bootstrap
-      - bootstrap_dircolors
-      - configure
-      - config_dircolors
-
-  - name: fish | configure | remove ls command
-    file:
-      path: "{{ shell_config_dir }}/functions/ls.fish"
-      state: absent
-    when: dircolors_configure_state == 'absent'
-    tags:
-      - fish
-      - bootstrap
-      - bootstrap_dircolors
-      - configure
-      - config_dircolors
-  when: ansible_user_shell_name == 'fish'
+    - configure_dircolors
