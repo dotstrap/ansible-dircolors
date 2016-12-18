@@ -1,0 +1,12 @@
+- name: setup | create configuration directory
+  file: 
+    path: "{{ dircolors_dest_file | dirname }}" 
+    state: directory 
+    follow: yes
+
+- name: install | create dircolors file
+  get_url:
+    url: "{{ dircolors_src_url }}"
+    dest: "{{ dircolors_dest_file }}"
+    force: yes
+  become: "{{ dircolors_become }}"

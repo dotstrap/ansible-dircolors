@@ -1,0 +1,5 @@
+- name: install | remove dircolors file
+  file: 
+    path: "{{ dircolors_dest_file }}" 
+    state: absent
+  become: "{{ dircolors_become }}"

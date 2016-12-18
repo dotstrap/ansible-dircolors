@@ -1,0 +1,6 @@
+- name: fish | configure | remove ls command
+  file:
+    path: "{{ shell_config_dir }}/functions/ls.fish"
+    state: absent
+  tags:
+    - fish

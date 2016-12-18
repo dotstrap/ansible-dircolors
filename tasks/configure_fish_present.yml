@@ -1,0 +1,7 @@
+- name: fish | configure | create ls command
+  template:
+    src: ls.fish.j2
+    dest: "{{ shell_config_dir }}/functions/ls.fish"
+  tags:
+    - fish
+ 

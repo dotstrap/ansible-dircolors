@@ -1,0 +1,16 @@
+- name: bash/zsh | configure | shell initialization
+  blockinfile:
+    dest: "{{ dircolors_shell_config_file }}"
+    create: yes
+    backup: yes
+    state: "{{ dircolors_configure_state }}"
+    marker: "{{ dircolors_configure_marker }}"
+    insertbefore: BOF
+    block: "{{ dircolors_configure_block }}"
+  tags:
+    - bash
+    - zsh
+    - bootstrap
+    - bootstrap_dircolors
+    - configure
+    - config_dircolors
