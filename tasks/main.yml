@@ -8,15 +8,22 @@
 
 - block:
     - name: setup | create configuration directory
-      file: path="{{ dircolors_dest_file | dirname }}" state=directory follow=yes
+      file: 
+        path: "{{ dircolors_dest_file | dirname }}" 
+        state: directory 
+        follow: yes
 
     - name: install | create dircolors file
-      copy: src=dircolors dest="{{ dircolors_dest_file }}"
+      copy: 
+        src: dircolors 
+        dest: "{{ dircolors_dest_file }}"
       become: "{{ dircolors_become }}"
       when: dircolors_configure_state != 'absent'
 
     - name: install | remove dircolors file
-      file: path="{{ dircolors_dest_file }}" state=absent
+      file: 
+        path: "{{ dircolors_dest_file }}" 
+        state: absent
       become: "{{ dircolors_become }}"
       when: dircolors_configure_state == 'absent'
   tags:
