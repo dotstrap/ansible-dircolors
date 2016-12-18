@@ -3,6 +3,9 @@ xdg_config_home: "{{ ansible_env.XDG_CONFIG_HOME | default(default_xdg_config_ho
 
 #####=== install ===#####
 
+# The source dircolors file URL
+dircolors_src_url: "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/LS_COLORS"
+
 # The destination path for the dircolors file used to generate $LS_COLORS
 dircolors_dest_file: "{{ config_dir | default(xdg_config_home) }}/dircolors"
 

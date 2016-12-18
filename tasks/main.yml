@@ -14,9 +14,10 @@
         follow: yes
 
     - name: install | create dircolors file
-      copy: 
-        src: dircolors 
+      get_url:
+        url: "{{ dircolors_src_url }}"
         dest: "{{ dircolors_dest_file }}"
+        force: yes
       become: "{{ dircolors_become }}"
       when: dircolors_configure_state != 'absent'
 
