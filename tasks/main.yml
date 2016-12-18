@@ -1,7 +1,7 @@
 ---
 
 - name: setup
-  include_vars: "{{ ansible_user_shell | basename }}.yml"
+  include_vars: "{{ ansible_user_shell_name }}.yml"
   tags: always
 
 - include: "install_{{ dircolors_configure_state }}.yml"
@@ -13,7 +13,7 @@
 
 - include: "{{ item }}"
   with_first_found:
-    - "configure_{{ ansible_user_shell | basename }}_{{ dircolors_configure_state }}.yml"
+    - "configure_{{ ansible_user_shell_name }}_{{ dircolors_configure_state }}.yml"
     - "configure_default.yml"
   tags:
     - bootstrap
